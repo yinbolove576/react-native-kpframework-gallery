@@ -98,7 +98,11 @@ public class PhotoImage implements Parcelable {
         this.debug = debug;
     }
 
-    public String getMode() { return mode; }
+    public String getMode() {
+        return mode;
+    }
 
-    public void setMode(String mode) { this.mode = mode; }
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
 }

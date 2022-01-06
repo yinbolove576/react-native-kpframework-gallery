@@ -1,9 +1,6 @@
 package com.xukj.kpframework.gallery;
 
-import android.app.Application;
 import android.content.Context;
-import android.os.AsyncTask;
-import android.os.Environment;
 import android.os.Looper;
 
 import com.bumptech.glide.Glide;
@@ -23,6 +20,7 @@ public class KPCacheUtil {
 
     /**
      * 获取缓存大小
+     *
      * @param context
      * @return
      */
@@ -33,6 +31,7 @@ public class KPCacheUtil {
 
     /**
      * 清除缓存
+     *
      * @param context
      * @return
      */

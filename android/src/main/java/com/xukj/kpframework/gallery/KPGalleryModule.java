@@ -3,7 +3,6 @@ package com.xukj.kpframework.gallery;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -12,9 +11,6 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
-import com.xukj.kpframework.gallery.PhotoImage;
-import com.xukj.kpframework.gallery.ViewPagerActivity;
-
 
 import java.util.ArrayList;
 
@@ -72,6 +68,7 @@ public class KPGalleryModule extends ReactContextBaseJavaModule {
 
     /**
      * 获取缓存大小
+     *
      * @param options
      * @param promise
      */
@@ -83,6 +80,7 @@ public class KPGalleryModule extends ReactContextBaseJavaModule {
 
     /**
      * 清空缓存
+     *
      * @param options
      * @param promise
      */
@@ -91,8 +89,7 @@ public class KPGalleryModule extends ReactContextBaseJavaModule {
         boolean result = KPCacheUtil.getInstance().clearCache(mReactContext);
         if (result) {
             promise.resolve(null);
-        }
-        else {
+        } else {
             promise.reject("-1", "清除缓存出错");
         }
     }

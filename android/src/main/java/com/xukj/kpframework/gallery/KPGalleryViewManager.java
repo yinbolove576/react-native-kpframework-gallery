@@ -1,9 +1,7 @@
 package com.xukj.kpframework.gallery;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.util.Log;
 
 import com.facebook.react.bridge.ReadableArray;
@@ -44,7 +42,7 @@ public class KPGalleryViewManager extends SimpleViewManager<KPGalleryView> {
         return new KPGalleryView(reactContext);
     }
 
-    @ReactProp(name="options")
+    @ReactProp(name = "options")
     public void setOptions(KPGalleryView view, ReadableMap options) {
         setConfiguration(options);
         Intent intent = new Intent();

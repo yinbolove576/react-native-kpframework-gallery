@@ -4,15 +4,15 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.net.Uri;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -81,8 +81,7 @@ public class KPGalleryViewItem extends RelativeLayout {
 
                         if (isGif) {
                             useGifImageView(resource, image);
-                        }
-                        else {
+                        } else {
                             useNormalImageView(resource, image);
                         }
 

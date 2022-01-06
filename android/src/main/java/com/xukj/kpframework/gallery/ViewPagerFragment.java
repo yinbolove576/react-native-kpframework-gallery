@@ -1,13 +1,10 @@
 package com.xukj.kpframework.gallery;
 
+import android.app.Activity;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +12,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -106,8 +107,7 @@ public class ViewPagerFragment extends Fragment {
 
                         if (isGif) {
                             useGifImageView(resource);
-                        }
-                        else {
+                        } else {
                             useNormalImageView(resource);
                         }
 
@@ -156,10 +156,18 @@ public class ViewPagerFragment extends Fragment {
     /**
      * 高宽都在视图范围内
      */
-    private void setInsideMode(File resource, PhotoImage image) {
-        mImageView.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CENTER_INSIDE);
-        mImageView.setDebug(image.isDebug());
-        mImageView.setImage(ImageSource.uri(Uri.fromFile(resource)));
+    private void setInsideMode(final File resource, final PhotoImage image) {
+        Activity activity = getActivity();
+        if (activity != null) {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mImageView.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CENTER_INSIDE);
+                    mImageView.setDebug(image.isDebug());
+                    mImageView.setImage(ImageSource.uri(Uri.fromFile(resource)));
+                }
+            });
+        }
     }
 
     /**

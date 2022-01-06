@@ -16,41 +16,55 @@ import java.io.FileOutputStream;
 
 public class ScreenUtils {
 
-    /** 获取屏幕信息 */
+    /**
+     * 获取屏幕信息
+     */
     public static DisplayMetrics getDisplayMetrics(Context context) {
         DisplayMetrics outMetrics = new DisplayMetrics();
         ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(outMetrics);
         return outMetrics;
     }
 
-    /** 获取屏幕密度 */
+    /**
+     * 获取屏幕密度
+     */
     public static float getScreenDensity(Context context) {
         return getDisplayMetrics(context).density;
     }
 
-    /** 获取屏幕宽度(像素) */
+    /**
+     * 获取屏幕宽度(像素)
+     */
     public static int getScreenWidthPixels(Context context) {
         return getDisplayMetrics(context).widthPixels;
     }
 
-    /** 获取屏幕宽度(dp) */
+    /**
+     * 获取屏幕宽度(dp)
+     */
     public static float getScreenWidthDp(Context context) {
         DisplayMetrics displayMetrics = getDisplayMetrics(context);
         return displayMetrics.widthPixels / displayMetrics.density;
     }
 
-    /** 获取屏幕高度(像素) */
+    /**
+     * 获取屏幕高度(像素)
+     */
     public static int getScreenHeightPixels(Context context) {
         return getDisplayMetrics(context).heightPixels;
     }
 
-    /** 获取屏幕高度(dp) */
+    /**
+     * 获取屏幕高度(dp)
+     */
     public static float getScreenHeightDp(Context context) {
         DisplayMetrics displayMetrics = getDisplayMetrics(context);
         return displayMetrics.heightPixels / displayMetrics.density;
     }
 
-    /** 获取状态栏高度 */
+    /**
+     * 获取状态栏高度
+     */
     public static int getStatusHeight(Context context) {
         int statusHeight = -1;
         try {

@@ -1,11 +1,12 @@
 package com.xukj.kpframework.gallery;
 
 import android.content.Context;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
-import android.util.AttributeSet;
-import android.view.MotionEvent;
 
 public class KPViewPager extends ViewPager {
 
