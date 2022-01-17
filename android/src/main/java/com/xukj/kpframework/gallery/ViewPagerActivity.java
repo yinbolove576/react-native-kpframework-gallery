@@ -110,7 +110,7 @@ public class ViewPagerActivity extends AppCompatActivity {
                 params.putInt(KPGalleryConstant.KPPHOTO_GALLERY_KEY_INDEX, position);
                 sendEventToJS(KPGalleryConstant.KPPHOTO_GALLERY_EVENT_ONPAGECHANGED, params);
 
-                if (mPosition != mSeekBar.getProgress()) {
+                if (mSeekBar != null && mPosition != mSeekBar.getProgress()) {
                     mSeekBar.setProgress(mPosition);
                 }
                 changeTitle();
@@ -158,7 +158,7 @@ public class ViewPagerActivity extends AppCompatActivity {
         mGestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onSingleTapConfirmed(MotionEvent e) {
-                if (useSeek) {
+                if (useSeek && mSeekBar != null) {
                     mSeekBar.setVisibility(mSeekBar.getVisibility() == View.VISIBLE ? View.INVISIBLE : View.VISIBLE);
                 }
                 return super.onSingleTapConfirmed(e);
