@@ -97,20 +97,25 @@ public class ViewPagerFragment extends Fragment {
                     }
 
                     @Override
-                    public boolean onResourceReady(File resource, Object model, Target<File> target, DataSource dataSource, boolean isFirstResource) {
-                        boolean isGif = false;
-                        try {
-                            isGif = PhotoImage.isGif(resource.getPath());
-                        } catch (Exception e) {
-                            // do nothing
+                    public boolean onResourceReady(final File resource, Object model, Target<File> target, DataSource dataSource, boolean isFirstResource) {
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    boolean isGif = false;
+                                    try {
+                                        isGif = PhotoImage.isGif(resource.getPath());
+                                    } catch (Exception e) {
+                                        // do nothing
+                                    }
+                                    if (isGif) {
+                                        useGifImageView(resource);
+                                    } else {
+                                        useNormalImageView(resource);
+                                    }
+                                }
+                            });
                         }
-
-                        if (isGif) {
-                            useGifImageView(resource);
-                        } else {
-                            useNormalImageView(resource);
-                        }
-
                         return false;
                     }
                 }).submit();
