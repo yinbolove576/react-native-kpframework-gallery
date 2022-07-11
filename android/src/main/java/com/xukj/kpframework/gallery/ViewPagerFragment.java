@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.exifinterface.media.ExifInterface;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -29,6 +30,7 @@ import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.xukj.kpframework.gallery.R;
 
 import java.io.File;
+import java.io.IOException;
 
 public class ViewPagerFragment extends Fragment {
 
@@ -167,6 +169,29 @@ public class ViewPagerFragment extends Fragment {
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    try {
+                        ExifInterface exifInterface = new ExifInterface(activity.getContentResolver().openInputStream(Uri.fromFile(resource)));
+                        String originalOrientation = exifInterface.getAttribute(ExifInterface.TAG_ORIENTATION);
+                        int orientation = SubsamplingScaleImageView.ORIENTATION_0;
+                        if (originalOrientation != null) {
+                            switch (originalOrientation) {
+                                case "6":
+                                    orientation = SubsamplingScaleImageView.ORIENTATION_90;
+                                    break;
+                                case "3":
+                                    orientation = SubsamplingScaleImageView.ORIENTATION_180;
+                                    break;
+                                case "8":
+                                    orientation = SubsamplingScaleImageView.ORIENTATION_270;
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        mImageView.setOrientation(orientation);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     mImageView.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CENTER_INSIDE);
                     mImageView.setDebug(image.isDebug());
                     mImageView.setImage(ImageSource.uri(Uri.fromFile(resource)));
